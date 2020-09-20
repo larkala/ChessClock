@@ -6,6 +6,59 @@ package model;
  * @author larkala
  * @version 2020-09-20
  */
-public class Clock {
 
+public class Clock {
+	
+	private int ticks, hh, mm, ss;
+	private boolean running;
+	
+	/**
+	 * Makes the clock "tick" once. Adds a second to the total seconds and updates the hours,
+	 * minutes and seconds relative to total ticks.
+	 */
+	private void tick() {
+		
+	}
+	
+	/**
+	 * Starts the clock.
+	 */
+	public void start() {
+		
+	}
+	
+	/**
+	 * Pauses the clock.
+	 */
+	public void pause() {
+		
+	}
+	
+	/**
+	 * Resets the clock.
+	 */
+	public void reset() {
+		if (isRunning())
+			pause();
+		ticks = 0;
+	}
+	
+	/**
+	 * Tells if clock is running.
+	 * 
+	 * @return {@code true} if running {@code false} otherwise
+	 */
+	public boolean isRunning() {
+		return running;
+	}
+	
+	/**
+	 * Returns the time passed as an integer array.
+	 * 
+	 * @return list of hours, minutes & seconds of this clock
+	 */
+	public int[] getTime() {
+		int [] time = {hh, mm, ss};
+		return time;
+	}
 }
