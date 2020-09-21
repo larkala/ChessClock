@@ -29,7 +29,7 @@ public class Dummy extends JFrame {
 
 		add(buttonpanel);
 
-		setBounds(500, 500, 500, 500);
+		setBounds(200, 200, 200, 200);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
