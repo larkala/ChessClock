@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Timer;
+
 /**
  * This class contains the Clock that will later be used as a part of the chess
  * clock.
@@ -22,29 +24,43 @@ public class Clock {
 	 * Makes the clock "tick" once. Adds a second to the total seconds and updates
 	 * the hours, minutes and seconds relative to total ticks.
 	 * 
-	 * @throws InterruptedException 
 	 */
-	private void tick() throws InterruptedException {
-		Thread.sleep(1000);
+	private void tick() {
 		ticks++;
 	}
 
 	/**
 	 * Starts the clock.
-	 * @throws InterruptedException 
+	 * 
 	 */
-	public void start() throws InterruptedException {
-		if (!isRunning()) {
-			running = true;
+	public void start() {
+		running = true;
+		System.out.println("START");
+		Thread t = new Thread() {
 
-			while (running) {
-				tick();
-
-				hh = ticks / 3600;
-				mm = (ticks % 3600) / 60;
-				ss = ticks % 60;
+			public void run() {
+				
+				while (true) {
+				
+					if (isRunning()) {
+					
+						try {
+							tick();
+							sleep(1000);
+							hh = ticks / 3600;
+							mm = (ticks % 3600) / 60;
+							ss = ticks % 60;
+							System.out.println(hh + ":" + mm + ":" + ss);
+						} catch (Exception e) {
+							
+						}
+					} else {
+						break;
+					}
+				}
 			}
-		}
+		};
+		t.start(); 
 	}
 
 	/**
@@ -53,6 +69,7 @@ public class Clock {
 	public void pause() {
 		if (isRunning())
 			running = false;
+		System.out.println("PAUSED");
 	}
 
 	/**
@@ -62,6 +79,7 @@ public class Clock {
 		if (isRunning())
 			pause();
 		ticks = 0;
+		System.out.println("RESET");
 	}
 
 	/**
