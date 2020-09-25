@@ -12,7 +12,7 @@ import model.Clock;
 
 public class Dummy extends JFrame {
 
-	Clock c = new Clock();
+	Clock c = new Clock("s");
 	JButton start, pause, reset;
 	JPanel buttonpanel;
 
@@ -24,7 +24,8 @@ public class Dummy extends JFrame {
 		buttonpanel.add(start);
 		buttonpanel.add(pause);
 		buttonpanel.add(reset);
-
+		
+		start.setEnabled(false);
 		addListeners();
 
 		add(buttonpanel);

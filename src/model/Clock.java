@@ -14,10 +14,12 @@ public class Clock {
 
 	private int ticks, hh, mm, ss;
 	private boolean running;
+	private String m;
 
-	public Clock() {
+	public Clock(String m) {
 		ticks = hh = mm = ss = 0;
 		running = false;
+		this.m = m;
 	}
 
 	/**
@@ -35,7 +37,6 @@ public class Clock {
 	 */
 	public void start() {
 		running = true;
-		System.out.println("START");
 		Thread t = new Thread() {
 
 			public void run() {
@@ -50,7 +51,6 @@ public class Clock {
 							hh = ticks / 3600;
 							mm = (ticks % 3600) / 60;
 							ss = ticks % 60;
-							System.out.println(hh + ":" + mm + ":" + ss);
 						} catch (Exception e) {
 							
 						}
@@ -67,19 +67,15 @@ public class Clock {
 	 * Pauses the clock.
 	 */
 	public void pause() {
-		if (isRunning())
-			running = false;
-		System.out.println("PAUSED");
+	running = false;
 	}
 
 	/**
 	 * Resets the clock.
 	 */
 	public void reset() {
-		if (isRunning())
-			pause();
+		pause();
 		ticks = 0;
-		System.out.println("RESET");
 	}
 
 	/**
@@ -87,7 +83,7 @@ public class Clock {
 	 * 
 	 * @return {@code true} if running {@code false} otherwise
 	 */
-	public boolean isRunning() {
+	private boolean isRunning() {
 		return running;
 	}
 

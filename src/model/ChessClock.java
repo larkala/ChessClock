@@ -17,21 +17,8 @@ public class ChessClock {
 	 * Constructs a ChessClock.
 	 */
 	public ChessClock() {
-		white = new Clock();
-		black = new Clock();
-	}
-
-	/**
-	 * Starts the clock if both states of the clock are inactive. Throws a
-	 * {@link ChessClockException} otherwise
-	 */
-	private void startClock() {
-		if (reset & !(whiteRunning || blackRunning)) {
-			reset = false;
-			white.start();
-			whiteRunning = white.isRunning();
-		} else
-			throw new ChessClockException("Can't start a running clock!");
+		white = new Clock("w");
+		black = new Clock("b");
 	}
 
 	/**
@@ -39,19 +26,26 @@ public class ChessClock {
 	 * inactive clock.
 	 */
 	public void switchTurns() {
-		if (whiteIsRunning()) {
-			white.pause();
-			whiteRunning = white.isRunning();
-			black.start();
-			blackRunning = black.isRunning();
+		
+		if (!reset) {
+			if (whiteIsRunning()) {
+				white.pause();
+				whiteRunning = false;
+				black.start();
+				blackRunning = true;
+			}
+			else if (blackIsRunning()) {
+				black.pause();
+				blackRunning = false;
+				white.start();
+				whiteRunning = true;
+			} 
+			
 		}
-		if (blackIsRunning()) {
-			black.pause();
-			blackRunning = black.isRunning();
+		else if (reset){
+			reset = false;
 			white.start();
-			whiteRunning = white.isRunning();
-		} else {
-			startClock();
+			whiteRunning = true;
 		}
 	}
 
@@ -64,8 +58,8 @@ public class ChessClock {
 			white.pause();
 		if (blackRunning)
 			black.pause();
-		whiteRunning = white.isRunning();
-		blackRunning = black.isRunning();
+		whiteRunning = false;
+		blackRunning = false;
 		white.reset();
 		black.reset();
 		reset = true;
