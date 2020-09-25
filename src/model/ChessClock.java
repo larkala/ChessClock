@@ -25,12 +25,30 @@ public class ChessClock {
 	 * Starts the clock if both states of the clock are inactive. Throws a
 	 * {@link ChessClockException} otherwise
 	 */
-	public void startClock() {
+	private void startClock() {
 		if (reset & !(whiteRunning || blackRunning)) {
 			reset = false;
 			white.start();
 		} else
 			throw new ChessClockException("Can't start a running clock!");
+	}
+
+	/**
+	 * Switches the turn of the players by pausing the active clock and starting the
+	 * inactive clock.
+	 */
+	public void switchTurns() {
+		if(whiteIsRunning()) {
+			white.pause();
+			black.start();
+		} 
+		if (blackIsRunning()) {
+			black.pause();
+			white.start();
+		} 
+		else {
+			startClock();
+		}
 	}
 
 	/**
@@ -63,5 +81,23 @@ public class ChessClock {
 	 */
 	public int[] getBlackTime() {
 		return black.getTime();
+	}
+
+	/**
+	 * Returns if white clock is running.
+	 * 
+	 * @return {@code true} if clock is running, {@code false}
+	 */
+	public boolean whiteIsRunning() {
+		return whiteRunning;
+	}
+
+	/**
+	 * Returns if black clock is running.
+	 * 
+	 * @return {@code true} if clock is running, {@code false}
+	 */
+	public boolean blackIsRunning() {
+		return blackRunning;
 	}
 }
