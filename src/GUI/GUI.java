@@ -86,8 +86,6 @@ public class GUI extends JFrame {
 	private void createClock() {
 		whiteClock = new JTextArea(1,1);
 		blackClock = new JTextArea(1,1);
-		whiteClock.setText("TIME1");
-		blackClock.setText("Time2");
 		whiteClock.setBackground(Color.LIGHT_GRAY);
 		blackClock.setBackground(Color.LIGHT_GRAY);
 		whiteClock.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
@@ -136,8 +134,8 @@ public class GUI extends JFrame {
 	}
 
 	private void createButtons() {
-		whiteButton = new JButton("_____________");
-		blackButton = new JButton("_____________");
+		whiteButton = new JButton("______");
+		blackButton = new JButton("______");
 		resetButton = new JButton("Reset");
 
 		blackButton.setEnabled(false);
