@@ -17,8 +17,8 @@ public class ChessClock {
 	 * Constructs a ChessClock.
 	 */
 	public ChessClock() {
-		white = new Clock("w");
-		black = new Clock("b");
+		white = new Clock();
+		black = new Clock();
 	}
 
 	/**
@@ -50,18 +50,13 @@ public class ChessClock {
 	}
 
 	/**
-	 * Resets both clocks. Throws a {@link ChessClockException} if any player's
-	 * clock is running.
+	 * Resets both clocks.
 	 */
-	public void ResetClocks() {
-		if (whiteRunning)
-			white.pause();
-		if (blackRunning)
-			black.pause();
+	public void resetClocks() {
+		white.reset();    
+		black.reset();    
 		whiteRunning = false;
 		blackRunning = false;
-		white.reset();
-		black.reset();
 		reset = true;
 	}
 

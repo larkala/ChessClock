@@ -84,8 +84,8 @@ public class GUI extends JFrame {
 	}
 
 	private void createClock() {
-		whiteClock = new JTextArea(1,1);
-		blackClock = new JTextArea(1,1);
+		whiteClock = new JTextArea(1,1);       
+		blackClock = new JTextArea(1,1);       
 		whiteClock.setBackground(Color.LIGHT_GRAY);
 		blackClock.setBackground(Color.LIGHT_GRAY);
 		whiteClock.setBorder(BorderFactory.createLineBorder(Color.WHITE, 15));
@@ -124,9 +124,9 @@ public class GUI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				chessclock.ResetClocks();
-				blackButton.setEnabled(false);
-				whiteButton.setEnabled(true);
+				chessclock.resetClocks();
+				whiteButton.setEnabled(false);
+				blackButton.setEnabled(true);
 				update();
 				}
 		});
@@ -134,11 +134,11 @@ public class GUI extends JFrame {
 	}
 
 	private void createButtons() {
-		whiteButton = new JButton("______");
-		blackButton = new JButton("______");
+		whiteButton = new JButton("____________");
+		blackButton = new JButton("____________");
 		resetButton = new JButton("Reset");
 
-		blackButton.setEnabled(false);
+		whiteButton.setEnabled(false);
 		
 		whiteButton.setBackground(Color.WHITE);
 		blackButton.setBackground(Color.WHITE);

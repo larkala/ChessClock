@@ -14,12 +14,10 @@ public class Clock {
 
 	private int ticks, hh, mm, ss;
 	private boolean running;
-	private String m;
 
-	public Clock(String m) {
+	public Clock() {
 		ticks = hh = mm = ss = 0;
 		running = false;
-		this.m = m;
 	}
 
 	/**
@@ -75,7 +73,7 @@ public class Clock {
 	 */
 	public void reset() {
 		pause();
-		ticks = 0;
+		ticks = hh = mm = ss = 0;
 	}
 
 	/**
